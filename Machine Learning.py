@@ -6,6 +6,7 @@ import random
 import os
 import sys
 import time
+largestnumber = 0
 if sys.platform == "linux" or sys.platform == "posix":
     clearorcls = "clear"
 else:
@@ -15,7 +16,7 @@ def clear_screen():
 print("Type any number and through the magic of machine learning this program will tell you what your number is")
 previousnumbers = []
 number = int(input("What's the number: "))
-guessnumber = random.randint(0,9223372036854775807)
+guessnumber = random.randint(0,largestnumber)
 previousnumbers.append(guessnumber)
 while number != guessnumber:
     clear_screen()
@@ -25,8 +26,9 @@ while number != guessnumber:
         previousnumbers.append(guessnumber)
     clear_screen()
     print(guessnumber)
-    guessnumber = random.randint(0,9223372036854775807)
+    largestnumber += 1
+    guessnumber = random.randint(0,largestnumber)
     if guessnumber in previousnumbers == True or (guessnumber * -1) in previousnumbers == True:
-        guessnumber = random.randint(0,9223372036854775807)
+        guessnumber = random.randint(0,largestnumber)
 else:
     print("Your number is",guessnumber)
